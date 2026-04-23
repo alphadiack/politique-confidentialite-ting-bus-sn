@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politique de Gestion des Données Personnelles – TFS Sénégal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #1a7a8a;
+      --teal-dark: #0e5a68;
+      --teal-light: #e8f5f7;
+      --gold: #c9a84c;
+      --text: #1c2a2e;
+      --muted: #5a7077;
+      --bg: #f8fafb;
+      --white: #ffffff;
+      --border: #d0e4e8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 100%);
+      color: white;
+      padding: 60px 40px 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 250px; height: 250px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.9);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 42px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    header h1 span { color: var(--gold); }
+    .header-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .header-meta {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .meta-item strong { color: white; display: block; font-size: 14px; letter-spacing: 0; }
+
+    /* LAYOUT */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* TABLE OF CONTENTS */
+    .toc {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin: 40px auto;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .toc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--teal-dark);
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--teal-light);
+    }
+    .toc ol {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+    }
+    @media(max-width:600px){ .toc ol { grid-template-columns: 1fr; } }
+    .toc li { counter-increment: toc-count; }
+    .toc a {
+      color: var(--teal);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .toc a:hover { color: var(--teal-dark); border-color: var(--teal-light); }
+    .toc-num {
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      min-width: 22px;
+    }
+
+    /* SECTIONS */
+    .section {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: linear-gradient(90deg, var(--teal) 0%, var(--teal-dark) 100%);
+      color: white;
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-num {
+      background: rgba(255,255,255,0.2);
+      border-radius: 6px;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .section-body {
+      padding: 28px 32px;
+    }
+    .section-body p { margin-bottom: 14px; font-size: 15px; color: #2a3a40; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* SUBSECTIONS */
+    .subsection-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--teal-dark);
+      margin: 20px 0 8px;
+      padding-left: 12px;
+      border-left: 3px solid var(--gold);
+    }
+
+    /* LISTS */
+    ul.policy-list, ol.policy-list {
+      margin: 10px 0 14px 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    ul.policy-list li {
+      padding: 7px 0 7px 24px;
+      position: relative;
+      font-size: 15px;
+      color: #2a3a40;
+      border-bottom: 1px solid #f0f5f6;
+    }
+    ul.policy-list li:last-child { border-bottom: none; }
+    ul.policy-list li::before {
+      content: '›';
+      position: absolute;
+      left: 6px;
+      color: var(--teal);
+      font-size: 18px;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+    ul.policy-list li strong { color: var(--teal-dark); }
+
+    ol.policy-list { counter-reset: ol-counter; }
+    ol.policy-list li {
+      counter-increment: ol-counter;
+      padding: 8px 0 8px 32px;
+      position: relative;
+      font-size: 15px;
+      color: #2a3a40;
+      border-bottom: 1px solid #f0f5f6;
+    }
+    ol.policy-list li:last-child { border-bottom: none; }
+    ol.policy-list li::before {
+      content: counter(ol-counter);
+      position: absolute;
+      left: 0;
+      background: var(--teal);
+      color: white;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      top: 10px;
+    }
+
+    /* SIGNATAIRES TABLE */
+    .signataires {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .signataires th {
+      background: var(--teal);
+      color: white;
+      text-align: left;
+      padding: 10px 16px;
+      font-weight: 600;
+    }
+    .signataires td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .signataires tr:last-child td { border-bottom: none; }
+    .signataires tr:nth-child(even) td { background: var(--teal-light); }
+
+    /* CONTACT BOX */
+    .contact-box {
+      background: linear-gradient(135deg, var(--teal-light), #dff0f3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      background: var(--teal);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+    .contact-box a { color: var(--teal-dark); font-weight: 700; }
+
+    /* APPROVAL TABLE */
+    .approval-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    .approval-table th {
+      background: var(--teal);
+      color: white;
+      padding: 10px 16px;
+      text-align: left;
+    }
+    .approval-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--teal-dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 32px 20px;
+      margin-top: 40px;
+      font-size: 13px;
+    }
+    footer strong { color: white; }
+
+    /* BACK TO TOP */
+    .back-top {
+      display: block;
+      text-align: center;
+      margin: 10px 0 0;
+      color: var(--teal);
+      font-size: 13px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .back-top:hover { color: var(--teal-dark); }
+
+    @media(max-width:600px){
+      header { padding: 40px 20px 36px; }
+      .section-body { padding: 20px 18px; }
+      .toc { padding: 22px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-badge">Touchpoint Financial Services SA</div>
+  <h1>Politique de Gestion des<br><span>Données Personnelles</span></h1>
+  <p class="header-sub">Conformément à la loi n° 2008-12 du 25 janvier 2008 relative à la protection des données à caractère personnel</p>
+  <div class="header-meta">
+    <div class="meta-item"><strong>TFS Sénégal</strong>Responsable du traitement</div>
+    <div class="meta-item"><strong>13 Mars 2026</strong>Date d'approbation</div>
+    <div class="meta-item"><strong>Révisée annuellement</strong>Fréquence de mise à jour</div>
+  </div>
+</header>
+
+<div class="container" style="padding-top:40px">
+
+  <!-- SIGNATAIRES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">✦</div>
+      <div class="section-title">Signataires du Document</div>
+    </div>
+    <div class="section-body">
+      <table class="signataires">
+        <thead>
+          <tr><th>Rôle</th><th>Nom & Prénom</th><th>Fonction</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Créateur</strong></td><td>Ndèye Coura Fall Mbaye</td><td>Responsable KYC, Formation, chargé de la protection des données personnelles</td></tr>
+          <tr><td><strong>Valideur 1</strong></td><td>Mariama Dalanda Diallo</td><td>Responsable conformité TFS Sénégal</td></tr>
+          <tr><td><strong>Valideur 2</strong></td><td>Marie Ndiaye Leriche</td><td>Directrice conformité Groupe</td></tr>
+          <tr><td><strong>Valideur 3</strong></td><td>Aissatou Ami Touré</td><td>Directrice Générale</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TABLE DES MATIÈRES -->
+  <div class="toc" id="top">
+    <div class="toc-title">📋 Table des matières</div>
+    <ol>
+      <li><a href="#s1"><span class="toc-num">01</span>Préambule</a></li>
+      <li><a href="#s2"><span class="toc-num">02</span>Définitions</a></li>
+      <li><a href="#s3"><span class="toc-num">03</span>Objectif</a></li>
+      <li><a href="#s4"><span class="toc-num">04</span>Champ d'application & Principes</a></li>
+      <li><a href="#s5"><span class="toc-num">05</span>Collecte et utilisation des données</a></li>
+      <li><a href="#s6"><span class="toc-num">06</span>Droits des personnes concernées</a></li>
+      <li><a href="#s7"><span class="toc-num">07</span>Traitement des données sensibles</a></li>
+      <li><a href="#s8"><span class="toc-num">08</span>Gestion du consentement</a></li>
+      <li><a href="#s9"><span class="toc-num">09</span>Sécurité et stockage</a></li>
+      <li><a href="#s10"><span class="toc-num">10</span>Traitement des plaintes</a></li>
+      <li><a href="#s11"><span class="toc-num">11</span>Rôle du DPO</a></li>
+      <li><a href="#s12"><span class="toc-num">12</span>Formation des employés</a></li>
+      <li><a href="#s13"><span class="toc-num">13</span>Conservation et destruction</a></li>
+      <li><a href="#s14"><span class="toc-num">14</span>Violations de données</a></li>
+      <li><a href="#s15"><span class="toc-num">15</span>Avis de confidentialité</a></li>
+      <li><a href="#s17"><span class="toc-num">17</span>Flux transfrontaliers</a></li>
+      <li><a href="#s18"><span class="toc-num">18</span>Traitement automatisé</a></li>
+      <li><a href="#s19"><span class="toc-num">19</span>Partage des données</a></li>
+      <li><a href="#s22"><span class="toc-num">22</span>Cookies et suivi</a></li>
+      <li><a href="#s26"><span class="toc-num">26</span>Approbation</a></li>
+    </ol>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title">Préambule</div>
+    </div>
+    <div class="section-body">
+      <p>La présente politique vise à établir les principes et les règles régissant les principales opérations de traitement des données à caractère personnel, notamment la collecte, l'utilisation, la conservation, la sécurité et la protection, conformément à la loi n° 2008-12 du 25 janvier 2008 relative à la protection des données à caractère personnel.</p>
+      <p>Elle s'applique à toutes les activités de traitement des données, automatisées ou non, quels que soient les méthodes ou les outils utilisés. Elle s'inscrit dans le cadre d'une approche plus large en matière de transparence et de conformité avec les réglementations applicables.</p>
+      <p>Cette politique s'applique aux opérations de traitement des données effectuées par Touchpoint Financial Services SA, ci-après dénommé « TFS Sénégal », en sa qualité de responsable du traitement ou de sous-traitant, selon le cas.</p>
+      <p>Cette politique peut être modifiée ou ajustée à tout moment pour refléter les évolutions juridiques, judiciaires ou pratiques, ou à la suite de décisions et de recommandations de l'autorité de contrôle. Toute mise à jour sera communiquée aux employés, clients et/ou partenaires par tout moyen déterminé par TFS Sénégal qui garantit la traçabilité.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title">Définitions</div>
+    </div>
+    <div class="section-body">
+      <ol class="policy-list">
+        <li><strong>Anonymisation :</strong> Tout processus qui transforme de manière irréversible les données à caractère personnel afin qu'elles ne puissent plus identifier directement ou indirectement une personne physique.</li>
+        <li><strong>Consentement :</strong> Toute manifestation de volonté libre, spécifique, éclairée et univoque par laquelle la personne concernée accepte que ses données à caractère personnel fassent l'objet d'un traitement.</li>
+        <li><strong>Cookies :</strong> Petits fichiers stockés par un serveur sur l'appareil d'un utilisateur, associés à un domaine web spécifique.</li>
+        <li><strong>Responsable du traitement :</strong> La personne physique ou morale, l'autorité publique, l'agence ou tout autre organisme qui détermine les finalités et les moyens du traitement des données à caractère personnel.</li>
+        <li><strong>Sous-traitant :</strong> Toute personne physique ou morale qui traite des données à caractère personnel pour le compte du responsable du traitement.</li>
+        <li><strong>Personne concernée :</strong> Personne physique dont les données à caractère personnel sont traitées.</li>
+        <li><strong>Violation de données :</strong> Tout incident de sécurité entraînant la destruction, la perte, l'altération, la divulgation non autorisée ou l'accès non autorisé à des données à caractère personnel.</li>
+        <li><strong>Transfert de données :</strong> Toute communication de données à caractère personnel vers un pays tiers ou une organisation internationale, en dehors du territoire national.</li>
+        <li><strong>Pseudonymisation :</strong> Tout processus qui remplace les éléments d'identification des données par des pseudonymes, de sorte que les personnes ne puissent être identifiées sans informations supplémentaires.</li>
+        <li><strong>Profilage :</strong> Toute forme de traitement automatisé visant à évaluer certains aspects personnels d'une personne, notamment pour analyser ou prédire ses préférences, son comportement ou sa situation personnelle.</li>
+        <li><strong>Données à caractère personnel sensibles :</strong> Données relatives à la santé, données biométriques ou autres catégories particulières.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title">Objectif</div>
+    </div>
+    <div class="section-body">
+      <p>TFS Sénégal comprend que la protection des données à caractère personnel est essentielle pour maintenir la confiance et respecter les obligations légales. L'entreprise s'engage à traiter toutes les informations à caractère personnel de manière sûre et responsable, conformément à la loi n° 2008-12 du 25 janvier 2008 relative à la protection des données à caractère personnel.</p>
+      <p>Nous prenons des mesures concrètes pour empêcher tout accès, utilisation ou divulgation non autorisés des données. TFS Sénégal veille également à ce que ses employés soient régulièrement informés et formés aux règles de protection des données afin de maintenir un niveau élevé de sécurité et de respect de la vie privée dans toutes nos activités.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title">Champ d'application et Principes généraux</div>
+    </div>
+    <div class="section-body">
+      <p>Cette politique s'applique à toutes les données personnelles collectées, reçues, traitées, stockées ou transmises par TFS Sénégal, en qualité de responsable du traitement ou de sous-traitant, y compris celles effectuées par des employés, sous-traitants, partenaires ou prestataires de services tiers. Elle couvre tous les départements, filiales et opérations, tant au Sénégal qu'à l'international.</p>
+      <p>Cette politique couvre notamment :</p>
+      <ul class="policy-list">
+        <li>Les applications web et mobiles développées et exploitées par TFS Sénégal</li>
+        <li>Les API exposées et les services numériques intégrés</li>
+        <li>Les bases de données, systèmes de stockage et environnements de sauvegarde</li>
+        <li>Les journaux système, outils de surveillance et données de traçabilité</li>
+        <li>Les sous-traitants, prestataires de services et partenaires commerciaux autorisés à accéder aux données</li>
+      </ul>
+
+      <div class="subsection-title">Principes généraux</div>
+      <p>TFS Sénégal s'engage à respecter les principes clés suivants :</p>
+      <ol class="policy-list">
+        <li><strong>Légalité, équité et transparence :</strong> Les données personnelles doivent être traitées de manière licite, loyale et transparente, en veillant à ce que les personnes concernées soient informées.</li>
+        <li><strong>Limitation de la finalité :</strong> Les données doivent être collectées à des fins spécifiques, explicites et légitimes et ne doivent pas être traitées ultérieurement d'une manière incompatible avec ces finalités.</li>
+        <li><strong>Minimisation des données :</strong> Les données collectées doivent être adéquates, pertinentes et limitées à ce qui est nécessaire.</li>
+        <li><strong>Exactitude :</strong> Les données doivent être exactes, complètes et tenues à jour. Des mesures raisonnables doivent être prises pour corriger ou effacer sans délai les données inexactes.</li>
+        <li><strong>Limitation de la conservation :</strong> Les données ne doivent pas être conservées plus longtemps que nécessaire et doivent être supprimées ou anonymisées de manière sécurisée.</li>
+        <li><strong>Intégrité et confidentialité :</strong> Les données doivent être traitées de manière à garantir une sécurité appropriée, y compris une protection contre le traitement non autorisé et la perte accidentelle.</li>
+        <li><strong>Transparence et droits des personnes concernées :</strong> TFS Sénégal reconnaît et respecte les droits des personnes concernées, y compris le droit d'accès, de rectification, d'effacement, de limitation et d'opposition au traitement.</li>
+        <li><strong>Responsabilité :</strong> TFS Sénégal est chargé de veiller au respect de ces principes et doit être en mesure de le démontrer à la Commission de protection des données à caractère personnel sur demande.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title">Collecte et utilisation des données</div>
+    </div>
+    <div class="section-body">
+      <div class="subsection-title">5.1 Types de données collectées</div>
+      <p>Nom complet, date et lieu de naissance, nationalité, numéro d'identité/de passeport, numéro d'identification fiscale, adresse, numéro de téléphone, adresse électronique et autres coordonnées, coordonnées bancaires, numéros de compte mobile, historique des transactions, références de paiement et soldes de compte, profession, employeur et source de revenus. Adresse IP, identifiants d'appareils, géolocalisation (le cas échéant) et empreinte numérique à des fins de prévention de la fraude et de sécurité du système, données KYC et de conformité.</p>
+
+      <div class="subsection-title">5.2 Modes de collecte</div>
+      <ul class="policy-list">
+        <li><strong>Collecte directe :</strong> Lorsque la personne concernée fournit directement des informations (inscription, ouverture de compte, vérification KYC, assistance à la clientèle).</li>
+        <li><strong>Collecte indirecte :</strong> Auprès de tiers tels que des banques partenaires, des opérateurs de réseaux mobiles, des sociétés de transfert de fonds ou des agences d'évaluation du crédit, conformément aux exigences réglementaires.</li>
+        <li><strong>Collecte automatisée :</strong> Par le biais de plateformes PSP, d'applications mobiles ou de formulaires en ligne qui enregistrent les données transactionnelles et les données relatives aux appareils.</li>
+        <li><strong>Demandes réglementaires ou légales :</strong> Lorsque les données sont obtenues ou vérifiées en réponse à des demandes légales émanant d'autorités réglementaires.</li>
+      </ul>
+
+      <div class="subsection-title">5.3 Base juridique du traitement</div>
+      <ul class="policy-list">
+        <li><strong>Consentement :</strong> La personne concernée a donné son consentement explicite au traitement à une ou plusieurs fins spécifiques.</li>
+        <li><strong>Nécessité contractuelle :</strong> Le traitement est nécessaire à l'exécution d'un contrat auquel la personne concernée est partie.</li>
+        <li><strong>Obligation légale :</strong> Le traitement est nécessaire pour se conformer aux obligations légales et réglementaires prévues par la législation sénégalaise (KYC, LBC/FT/FP, fiscalité).</li>
+        <li><strong>Intérêt légitime :</strong> Le traitement est nécessaire aux intérêts légitimes de TFS Sénégal, tels que la détection des fraudes, la gestion des risques et la sécurité du réseau.</li>
+        <li><strong>Intérêt public :</strong> Le traitement peut avoir lieu lorsque cela est requis par des organismes de réglementation tels que la Banque centrale ou la Commission de protection des données personnelles.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section" id="s6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title">Droits des personnes concernées</div>
+    </div>
+    <div class="section-body">
+      <p>Toute personne dont les données personnelles sont collectées et traitées par TFS Sénégal est en droit d'exercer les droits suivants :</p>
+      <ul class="policy-list">
+        <li>Droit d'être informée de la manière dont leurs données sont collectées, utilisées, stockées, partagées et protégées.</li>
+        <li>Droit de demander la confirmation que leurs données sont traitées et, le cas échéant, d'y accéder et d'en obtenir une copie.</li>
+        <li>Droit de demander la correction ou le complément de toute donnée inexacte ou incomplète.</li>
+        <li>Droit de demander la suppression de leurs données lorsqu'elles ne sont plus nécessaires aux fins pour lesquelles elles ont été collectées.</li>
+        <li>Droit de demander que le traitement de leurs données soit limité dans certaines circonstances.</li>
+        <li>Droit de s'opposer au traitement fondé sur un intérêt légitime, l'intérêt public ou des finalités de marketing direct.</li>
+        <li>Droit à la portabilité des données dans un format structuré, couramment utilisé et lisible par machine.</li>
+        <li>Droit de retirer leur consentement à tout moment sans que cela n'affecte la licéité du traitement effectué avant le retrait.</li>
+        <li>Droit de déposer une plainte auprès de la Commission de protection des données personnelles (CDP).</li>
+        <li>Droit de demander une réparation judiciaire ou une indemnisation pour les dommages subis.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 7 -->
+  <div class="section" id="s7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title">Traitement des données sensibles</div>
+    </div>
+    <div class="section-body">
+      <p>Les données relatives à la santé, les identifiants biométriques, les données financières, les convictions religieuses ou politiques et d'autres catégories spécialement protégées nécessitent un niveau de sécurité et de confidentialité plus élevé.</p>
+      <p>Dans le cadre des activités de TFS Sénégal, la collecte de données personnelles sensibles est strictement limitée. Seuls les certificats médicaux et les extraits de casier judiciaire peuvent être collectés, et uniquement à des fins légitimes liées à la gestion des ressources humaines ou à la vérification de la fiabilité et de l'intégrité des partenaires avant leur intégration.</p>
+      <p>Ces données sont traitées avec le plus haut niveau de confidentialité et de sécurité. L'accès est réservé au personnel autorisé et les informations ne sont conservées que pendant la période nécessaire à la réalisation de l'objectif prévu ou conformément à la loi.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 8 -->
+  <div class="section" id="s8">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-title">Gestion du consentement</div>
+    </div>
+    <div class="section-body">
+      <p>Le consentement des personnes concernées est demandé avant la collecte ou le traitement de leurs données à caractère personnel. Le délégué à la protection des données (DPO) supervise le respect des procédures de gestion du consentement et effectue des audits réguliers.</p>
+      <p>Les rapports sur la collecte, les retraits et les mises à jour des consentements sont documentés et mis à disposition pour examen réglementaire ou contrôle interne de conformité.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 9 -->
+  <div class="section" id="s9">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <div class="section-title">Sécurité et stockage des données</div>
+    </div>
+    <div class="section-body">
+      <ol class="policy-list">
+        <li><strong>Chiffrement :</strong> AES-256 pour les données au repos, TLS 1.3 pour les communications en transit, gestion des clés via HSM/TEE avec des clés non exportables.</li>
+        <li><strong>Protection des journaux :</strong> Les journaux système et d'application sont sécurisés par des mécanismes de masquage et d'anonymisation pour éviter toute fuite accidentelle.</li>
+        <li><strong>Surveillance et détection :</strong> SIEM centralisé pour la collecte et la corrélation des événements, avec alertes de sécurité en temps réel.</li>
+        <li><strong>Contrôles d'accès :</strong> Principe du moindre privilège (PoLP) et authentification forte (MFA).</li>
+        <li><strong>Gestion des incidents :</strong> Procédure documentée de réponse aux incidents et notification aux autorités de contrôle et aux personnes concernées en cas de violation.</li>
+        <li><strong>Sensibilisation et formation :</strong> Formation annuelle obligatoire sur la protection des données pour tous les employés et sous-traitants essentiels.</li>
+        <li><strong>Preuves et audits :</strong> Rapports d'audit de sécurité et de conformité (internes et externes), journaux SIEM et documentation des configurations techniques et organisationnelles.</li>
+        <li><strong>Révision et amélioration continue :</strong> La politique est révisée au moins une fois par an, ou chaque fois qu'un changement majeur survient.</li>
+        <li><strong>Stockage :</strong> Toutes les données personnelles sont stockées sur des serveurs sécurisés (Google, Amazon, Worldline) des fournisseurs de services TIC fiables et réglementés, avec sauvegardes régulières et plans de reprise après sinistre.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SECTION 10 -->
+  <div class="section" id="s10">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div class="section-title">Traitement des plaintes</div>
+    </div>
+    <div class="section-body">
+      <p>Les plaintes sont soumises au DPO. TFS Sénégal examine et résout les problèmes dans un délai de sept (7) jours en transmettant les cas non résolus à la CDP.</p>
+      <div class="contact-box">
+        <div class="contact-icon">✉</div>
+        <div>
+          <strong>Contact DPO – Protection des données</strong><br>
+          <a href="mailto:dataperso@intouchgroup.net">dataperso@intouchgroup.net</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 11 -->
+  <div class="section" id="s11">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div class="section-title">Rôle et responsabilités du DPO</div>
+    </div>
+    <div class="section-body">
+      <p>Le DPO est officiellement nommé par la direction et dispose de ressources, d'une autorité et d'un accès suffisants pour s'acquitter efficacement de ses fonctions. Ses principales responsabilités sont :</p>
+      <ul class="policy-list">
+        <li>Veiller à la conformité de l'organisation avec la loi et les autres réglementations applicables en matière de protection des données.</li>
+        <li>Veiller à ce que toutes les activités de traitement soient conformes aux principes de licéité, d'équité, de transparence, de limitation des finalités et de minimisation des données.</li>
+        <li>Conseiller la direction et le personnel sur les obligations en matière de protection des données, y compris le traitement des données personnelles sensibles.</li>
+        <li>Élaborer et dispenser régulièrement des programmes de formation et de sensibilisation au personnel, aux sous-traitants et aux partenaires.</li>
+        <li>Servir de point de contact principal pour les personnes concernées qui souhaitent exercer leurs droits en vertu de la loi.</li>
+        <li>Surveiller, enquêter et gérer les violations et incidents liés aux données, en veillant à les signaler en temps utile à la Commission de protection des données personnelles.</li>
+        <li>Tenir des registres des activités de traitement, des journaux de consentement et des rapports de conformité afin de démontrer la responsabilité et la transparence.</li>
+        <li>Servir de point de contact principal avec la CDP et les autres autorités compétentes.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 12 -->
+  <div class="section" id="s12">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <div class="section-title">Formation et sensibilisation des employés</div>
+    </div>
+    <div class="section-body">
+      <p>TFS Sénégal met en œuvre un programme annuel de formation et de sensibilisation destiné à ses employés afin de renforcer leurs connaissances et leurs compétences en matière de protection des données et de sécurité de l'information. Ce programme couvre les meilleures pratiques, les obligations légales et réglementaires, ainsi que l'adaptation aux évolutions technologiques et réglementaires.</p>
+      <p>Outre ses employés, TFS Sénégal étend cette initiative à ses agents, sous-traitants ou fournisseurs et à l'ensemble du réseau de distribution impliqué dans la prestation de services. Ces sessions visent à garantir que toutes les parties prenantes comprennent et respectent les principes de protection des données, les exigences de confidentialité et les mesures de cybersécurité.</p>
+      <p>L'objectif global est de promouvoir une culture solide en matière de sécurité des données au sein de l'organisation et de son écosystème opérationnel.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 13 -->
+  <div class="section" id="s13">
+    <div class="section-header">
+      <div class="section-num">13</div>
+      <div class="section-title">Conservation et destruction des données</div>
+    </div>
+    <div class="section-body">
+      <p>Les données à caractère personnel sont conservées pendant toute la durée de la relation commerciale. Au-delà de cette période, elles peuvent être archivées pendant une durée maximale de dix (10) ans après la fin de la relation, à des fins d'audit, de contrôle ou de conformité légale.</p>
+      <p>La destruction est effectuée de manière sécurisée, conformément aux procédures internes et aux normes techniques applicables, notamment par le broyage ou la suppression sécurisée par les équipes informatiques.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 14 -->
+  <div class="section" id="s14">
+    <div class="section-header">
+      <div class="section-num">14</div>
+      <div class="section-title">Notification des violations de données à caractère personnel</div>
+    </div>
+    <div class="section-body">
+      <p>Les violations sont signalées aux personnes concernées dans les plus brefs délais. Le DPO supervise avec le département technique les enquêtes et les mesures d'atténuation.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 15 & 16 -->
+  <div class="section" id="s15">
+    <div class="section-header">
+      <div class="section-num">15</div>
+      <div class="section-title">Avis de confidentialité</div>
+    </div>
+    <div class="section-body">
+      <p>TFS Sénégal garantit la transparence dans la collecte, l'utilisation et la protection des données à caractère personnel. Les personnes concernées sont informées par le biais d'avis de confidentialité clairs fournis avant la collecte des données, expliquant l'objectif, la base juridique, la conservation et leurs droits.</p>
+      <p>Les informations sont communiquées via des sites web, des applications mobiles et des documents contractuels. Les employés, agents et sous-traitants reçoivent régulièrement des formations afin de communiquer efficacement les obligations en matière de confidentialité.</p>
+      <p>Les données à caractère personnel sont protégées par des mesures techniques et organisationnelles appropriées, et les personnes peuvent exercer leurs droits ou déposer des plaintes via :</p>
+      <div class="contact-box">
+        <div class="contact-icon">✉</div>
+        <div>
+          <strong>Point de contact dédié</strong><br>
+          <a href="mailto:dataperso@intouchgroup.net">dataperso@intouchgroup.net</a>
+        </div>
+      </div>
+
+      <div class="subsection-title">Analyse d'impact relative à la protection des données (AIPD)</div>
+      <p>TFS Sénégal décrit une approche structurée pour mener des analyses d'impact relatives à la protection des données (AIPD) afin de garantir que toutes les activités de traitement des données sont conformes aux lois et réglementations applicables. Les AIPD sont réalisées chaque fois qu'une activité de traitement est susceptible d'entraîner un risque élevé pour les droits et libertés des personnes.</p>
+      <p>Chaque analyse d'impact comprend une évaluation de la finalité et de la nécessité du traitement, une analyse des risques et la définition de garanties techniques et organisationnelles appropriées.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 17 -->
+  <div class="section" id="s17">
+    <div class="section-header">
+      <div class="section-num">17</div>
+      <div class="section-title">Flux transfrontaliers des données à caractère personnel</div>
+    </div>
+    <div class="section-body">
+      <p>Les transferts transfrontaliers de données sont effectués conformément aux lois applicables en matière de protection des données et nécessitent l'accord préalable de la Commission de protection des données personnelles (CDP). TFS Sénégal veille à ce que tous ces transferts soient protégés par des mécanismes de cryptage puissants, des protocoles de transmission sécurisés et des garanties contractuelles.</p>
+      <p>Si nécessaire, des accords de transfert de données ou des clauses contractuelles types sont mis en œuvre afin de garantir que les tiers respectent des normes équivalentes en matière de confidentialité et de sécurité.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 18 -->
+  <div class="section" id="s18">
+    <div class="section-header">
+      <div class="section-num">18</div>
+      <div class="section-title">Traitement automatisé et profilage</div>
+    </div>
+    <div class="section-body">
+      <p>Le traitement automatisé (par exemple, les algorithmes de triage des patients) est examiné afin de détecter tout biais, avec une supervision humaine et un consentement explicite pour le profilage.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 19 -->
+  <div class="section" id="s19">
+    <div class="section-header">
+      <div class="section-num">19</div>
+      <div class="section-title">Partage des données personnelles</div>
+    </div>
+    <div class="section-body">
+      <p>TFS Sénégal s'engage à ne partager les données personnelles que conformément à la loi n° 2008-12 du 25 janvier 2008 relative à la protection des données à caractère personnel, et aux autres réglementations applicables. Pour garantir cela :</p>
+      <ol class="policy-list">
+        <li><strong>Base juridique :</strong> Tout partage de données repose sur un fondement juridique valable (consentement explicite, obligation légale, nécessité contractuelle ou intérêt légitime).</li>
+        <li><strong>Transparence :</strong> Les personnes sont informées des destinataires, des finalités et des conditions du partage des données.</li>
+        <li><strong>Garanties contractuelles :</strong> Les transferts à des tiers sont régis par des accords précisant les obligations en matière de confidentialité, de sécurité et de conformité.</li>
+        <li><strong>Transferts internationaux :</strong> Le partage transfrontalier est conforme aux exigences légales et comprend des garanties appropriées.</li>
+        <li><strong>Sécurité :</strong> Les données sont protégées par des mesures techniques et organisationnelles telles que le cryptage et les contrôles d'accès.</li>
+        <li><strong>Droits des personnes :</strong> Les accords permettent l'exercice des droits d'accès, de rectification, d'opposition et de suppression.</li>
+        <li><strong>Traçabilité :</strong> Toutes les activités de partage sont consignées et font l'objet d'audits réguliers.</li>
+        <li><strong>Notification des violations :</strong> Tout incident est géré conformément aux procédures internes et signalé aux autorités et aux personnes concernées.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SECTION 20 -->
+  <div class="section" id="s20">
+    <div class="section-header">
+      <div class="section-num">20</div>
+      <div class="section-title">Divulgation aux autorités chargées de l'application de la loi</div>
+    </div>
+    <div class="section-body">
+      <p>Les divulgations doivent être légales, nécessaires et proportionnées. Les bases juridiques acceptables comprennent :</p>
+      <ul class="policy-list">
+        <li><strong>Les ordonnances, les réquisitions ou assignations</strong> délivrés par les autorités compétentes.</li>
+        <li><strong>Obligations légales</strong> en vertu de la législation.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 21 -->
+  <div class="section" id="s21">
+    <div class="section-header">
+      <div class="section-num">21</div>
+      <div class="section-title">Utilisation de la vidéosurveillance et des technologies de localisation</div>
+    </div>
+    <div class="section-body">
+      <p>TFS Sénégal peut utiliser des caméras de vidéosurveillance et des technologies de localisation strictement à des fins légitimes telles que la sécurité, la sûreté et l'efficacité opérationnelle. Tout traitement de ce type sera conforme à la loi sénégalaise sur la protection des données personnelles et aux réglementations applicables. Plus précisément :</p>
+      <ul class="policy-list">
+        <li>Les personnes seront informées par des panneaux ou des avis clairs de l'utilisation de ces technologies.</li>
+        <li>Les données collectées seront limitées à ce qui est nécessaire, stockées de manière sécurisée et conservées uniquement pendant la période nécessaire.</li>
+        <li>L'accès aux images et aux données de localisation sera limité au personnel autorisé.</li>
+        <li>Les personnes concernées ont le droit de demander l'accès à leurs données et d'exercer les autres droits prévus par la loi applicable.</li>
+      </ul>
+      <p>Des examens et des audits réguliers seront effectués afin de garantir le respect continu de la conformité et de minimiser les risques liés à la confidentialité.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 22 -->
+  <div class="section" id="s22">
+    <div class="section-header">
+      <div class="section-num">22</div>
+      <div class="section-title">Cookies et suivi en ligne</div>
+    </div>
+    <div class="section-body">
+      <p>Il existe des cookies techniques/strictement nécessaires qui sont activés par défaut. Il en va de même pour les cookies provenant de sites tiers intégrés à l'application, tels que Cloudflare, Google.com, etc. Toutefois, les utilisateurs peuvent les désactiver dans les paramètres.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 23 -->
+  <div class="section" id="s23">
+    <div class="section-header">
+      <div class="section-num">23</div>
+      <div class="section-title">Droits à la confidentialité en ligne pour les groupes spéciaux</div>
+    </div>
+    <div class="section-body">
+      <p>Les enfants et les personnes vulnérables bénéficient de protections renforcées, notamment le consentement parental pour les mineurs et des avis de confidentialité simplifiés.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 24 -->
+  <div class="section" id="s24">
+    <div class="section-header">
+      <div class="section-num">24</div>
+      <div class="section-title">Protection des données dès la conception et par défaut</div>
+    </div>
+    <div class="section-body">
+      <p>TFS Sénégal veille à ce que les principes de confidentialité et de protection des données soient intégrés dès le départ dans la conception de tous les systèmes, processus et services. Par défaut, seules les données personnelles minimales nécessaires à chaque finalité spécifique sont collectées, traitées et conservées.</p>
+      <p>Des mesures techniques et organisationnelles, telles que le cryptage, les contrôles d'accès et l'anonymisation, sont mises en œuvre pour protéger les données tout au long de leur cycle de vie. Tous les nouveaux projets font l'objet d'une analyse d'impact sur la protection des données afin d'identifier et d'atténuer les risques.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 25 -->
+  <div class="section" id="s25">
+    <div class="section-header">
+      <div class="section-num">25</div>
+      <div class="section-title">Procédures de mise en œuvre, suivi et évaluation</div>
+    </div>
+    <div class="section-body">
+      <p>TFS Sénégal garantit l'application effective de cette politique de protection des données grâce à des procédures documentées, des audits de conformité réguliers et une surveillance continue des activités de traitement des données. Des examens annuels et des analyses d'impact sur la protection des données sont effectués afin d'évaluer l'efficacité et d'identifier les améliorations possibles.</p>
+      <p>Le personnel reçoit une formation continue et des mesures correctives sont mises en œuvre rapidement afin de maintenir la conformité avec la loi sénégalaise sur la protection des données personnelles et de respecter des normes strictes en matière de confidentialité.</p>
+    </div>
+  </div>
+
+  <!-- SECTION 26 -->
+  <div class="section" id="s26">
+    <div class="section-header">
+      <div class="section-num">26</div>
+      <div class="section-title">Approbation</div>
+    </div>
+    <div class="section-body">
+      <p>La présente politique a été approuvée par le soussigné et sera révisée au moins une fois par an.</p>
+      <table class="approval-table">
+        <thead>
+          <tr><th>Date</th><th>Nom & Prénom</th><th>Fonction</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>13 Mars 2026</td><td>Aissatou Ami Touré</td><td>Directrice Générale</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:16px; font-size:13px; color:var(--muted);">
+        <em>Touchpoint Financial Services (TFS) SA — VDN Lot N°14 A Mermoz Ecole Police, Immeuble Sophie NDIAYE Justin, Dakar, Sénégal</em>
+      </p>
+    </div>
+  </div>
+
+  <a href="#top" class="back-top">↑ Retour en haut de page</a>
+
+</div><!-- end container -->
+
+<footer>
+  <strong>Touchpoint Financial Services (TFS) SA</strong><br>
+  VDN Lot N°14 A Mermoz Ecole Police — Immeuble Sophie NDIAYE Justin — Dakar, Sénégal<br><br>
+  Contact DPO : <a href="mailto:dataperso@intouchgroup.net" style="color:rgba(255,255,255,0.8)">dataperso@intouchgroup.net</a><br><br>
+  <span style="font-size:12px">Politique approuvée le 13 mars 2026 — Conforme à la loi n° 2008-12 du 25 janvier 2008</span>
+</footer>
+
+</body>
+</html>
